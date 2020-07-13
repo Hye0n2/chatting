@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+ul,li {
+    list-style-type: none;
+}
+
+.fa {
+    cursor: pointer;
+}
+
+.box {
+    margin: 50px 10%;
+    width: 500px;
+    height: 650px;
+    border: 1px solid black;
+    border-radius: 15px;
+    background-image: url("../images/bg.jpg");
+}
+
+.box-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.box-header-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-header-left i {
+    margin-left: 20px;
+}
+
+.box-header i {
+    font-size: 35px;
+}
+
+.box-header img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-left: 20px;
+}
+
+.box-header-right i {
+    margin-right: 20px;
+}
+
+.box-chatting {
+    width: 500px;
+    height: 80%;
+    overflow-y: scroll;
+}
+
+.chatting-left {
+    margin-left: 30px;
+}
+
+.chat-left li {
+    background-color: white;
+    margin: 10px 20px;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+.chat-left > li > span {
+    margin-left: 10px;
+}
+
+.box-send {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box-send i {
+    font-size: 30px;
+    margin: 0 20px;
+}
+
+#message {
+    margin: 0;
+    width: 90%;
+    height: 40px;
+    border: 1px solid white;
+    border-radius: 30px;
+    padding-left: 20px;
+}

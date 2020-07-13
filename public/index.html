@@ -1,11 +1,93 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatting</title>
+    <link rel="shortcut icon" href="#">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"
+        integrity="sha512-v8ng/uGxkge3d1IJuEo6dJP8JViyvms0cly9pnbfRxT6/31c3dRWxIiwGnMSWwZjHKOuY3EVmijs7k1jz/9bLA=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        crossorigin="anonymous"></script>
+
 </head>
+
 <body>
-    <h1>My Chatting App</h1>
+    <div class="container">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-header-left">
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                    <img src="images/user1.jpg" alt="유저1">
+                    <span>Lisa</span>
+                </div>
+                <div class="box-header-right">
+                    <i class="fa fa-video-camera" aria-hidden="true"></i>
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="box-chatting">
+                <div class="chatting-left">
+                    <ul class="chat-left">
+                        
+                    </ul>
+                </div>
+                <div class="chatting-right">
+                    <ul class="chat-right">
+
+                    </ul>
+                </div>
+            </div>
+            <div class="box-send">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                <input type="text" name="text" id="message" placeholder="Type your message">
+                <i class="fa fa-paper-plane" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // socekt io 연결
+        const socket = io();
+
+        const sendButton = document.querySelector(".fa-paper-plane");
+        sendButton.addEventListener('click', () => {
+            const message = document.querySelector("#message");
+            // console.log(message.value);
+            // 서버에서 보내는 역할
+            socket.emit('chatting', message.value);
+        })
+        message.addEventListener('keypress', (e) => {
+            // console.log(e);
+            if (e.key === 'Enter') {
+                const message = document.querySelector("#message");
+                // 서버에서 보내는 역할
+                socket.emit('chatting', message.value);
+            }
+        })
+
+        // 서버에서 받는 역할
+        socket.on('chatting', (msg) => {
+            $('.chat-left').append(`<li><span>${msg}</span></li>`);
+
+            $("#message").val("");
+
+            // const ul = document.querySelector(".chatting-left");
+            // const li = document.createElement("li");
+            // const txt = document.createTextNode(msg);
+
+            // li.appendChild(txt);
+            // ul.appendChild(txt);
+            // console.log(msg, 'from server!!!');
+        });
+    </script>
 </body>
+
 </html>
